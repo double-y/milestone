@@ -1,0 +1,63 @@
+@startuml{seq_user.png}
+title User sequence
+hide footbox
+actor user
+participant SignInController <<Controler>>
+participant SignInActivity <<View>>
+participant LoginActivity
+participant User <<Model>>
+participant System
+
+alt Haven't have account
+	activate SignInActivity
+	user -> SignInActivity : user info
+	user -> SignInActivity : send
+	SignInActivity -> System : user info
+	alt not valid
+		System --> SignInActivity : error
+		SignInActivity --> user : error view
+	else valid
+		System -> User : <<new>>
+		alt error
+			User --> System : error
+		User --> System : success
+		System --> SignInActivity : OK
+		SignInActivity -> HomeActivity : start
+		activate HomeActivity
+		alt error
+			HomeActivity --> SignInActivity : error
+			deactivate HomeActivity
+			System --> SignInActivity : error
+			SignInActivity --> user : error view
+		else success
+			HomeActivity --> SignInActivity : OK
+			deactivate SignInActivity
+		end
+	end
+else Haven't login
+	activate LoginActivity
+	user -> LoginActivity :user info
+	user -> LoginActivity :send
+	LoginActivity -> System : user info
+	alt not valid
+		System --> LoginActivity : not valid
+		LoginActivity --> user: not valid
+	else valid
+		LoginActivity -> HomeActivity : start
+		activate HomeActivity
+		alt no error
+			HomeActivity --> SignInActivity : OK
+			deactivate LoginActivity
+		else error
+			HomeActivity --> LoginActivity : error
+			deactivate LoginActivity
+			System --> LoginActivity : error
+			LoginActivity --> user : error view
+		end
+	end
+end
+
+
+activate Controller
+Controller -> User : << new >>
+@enduml

@@ -1,0 +1,24 @@
+@startuml{class.png}
+
+class User {
+	int id
+	Project createProject()
+	Project searchProject(Project)
+	MileStone getRecentMileStone()
+	MileStone finishMileStone(Task)
+	MileStone unfinishMileStone(Task)
+	void setMileStoneDueDate(MileStone,Date)
+}
+
+class Project{
+	int id
+	int adminUserId
+	URI iconURI
+}
+
+class MileStone{
+	int id
+	date dueDate
+}
+
+@enduml
