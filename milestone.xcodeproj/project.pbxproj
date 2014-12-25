@@ -407,6 +407,7 @@
 				5F7A63AA1A353CA40015077C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5F7A63AB1A353CA40015077C /* Build configuration list for PBXNativeTarget "milestoneTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +416,7 @@
 				5F7A63AD1A353CA40015077C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
