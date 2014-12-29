@@ -16,7 +16,6 @@ class ProjectViewController: UIViewController , UITableViewDataSource, UITableVi
     @IBOutlet var tableView : UITableView?
     
     let imgArray: NSArray = ["project","join","setting","calender"]
-    var selectedImage: UIImage?
     var projectNumber: UILabel?
     
     override func viewDidLoad() {
@@ -46,7 +45,7 @@ class ProjectViewController: UIViewController , UITableViewDataSource, UITableVi
         // Tag番号 ２ で UILabel インスタンスの生成
         let label1 = tableView.viewWithTag(2) as UILabel
         //文章をラベルに設定する
-        label1.text = "プロジェクトNo.\(indexPath.row + 1)"
+        label1.text = "プロジェクトNo.\(indexPath.row+1)"
         
         return cell
     }
@@ -54,7 +53,6 @@ class ProjectViewController: UIViewController , UITableViewDataSource, UITableVi
     //cellが選択されたとき
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath!) {
         // [indexPath.row] から画像名を探し、UImage を設定
-        selectedImage = UIImage(named:"\(imgArray[indexPath.row])")
         projectNumber = tableView.viewWithTag(2) as? UILabel
         
         // SubViewController へ遷移するために Segue を呼び出す
@@ -63,10 +61,9 @@ class ProjectViewController: UIViewController , UITableViewDataSource, UITableVi
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "toDetailProject") {
-            let DP:DetailProject = segue.destinationViewController as DetailProject
+            let SP:ShowProject = segue.destinationViewController as ShowProject
             // DetailProject のselectedImgに選択された画像を設定する
-            DP.selectedImg = selectedImage
-            DP.projectNum = projectNumber
+            SP.projectNum = projectNumber
         }
     }
     

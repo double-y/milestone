@@ -9,28 +9,29 @@
 import Foundation
 import UIKit
 
-class DetailProject: UIViewController{
-    @IBOutlet var imageView: UIImageView?
+class ShowProject: UIViewController{
+    //@IBOutlet var imageView: UIImageView?
     
     @IBOutlet var projectLabel: UILabel!
     
-    var selectedImg: UIImage?
+    //var selectedImg: UIImage?
     var projectNum: UILabel?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView?.image = selectedImg
+        //imageView?.image = selectedImg
         projectLabel?.text = projectNum?.text
+        //クリックされても表示されるプロジェクト名は更新されないんだけど、なんで？？
+        //戻るボタンを押したときに、リセットする必要があるのかも
         
         
         // 画像のアスペクト比を維持しUIImageViewサイズに収まるように表示
-        imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        //imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
 }
