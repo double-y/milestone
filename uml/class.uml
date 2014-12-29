@@ -1,24 +1,37 @@
 @startuml{class.png}
 
 class User {
-	int id
-	Project createProject()
-	Project searchProject(Project)
-	MileStone getRecentMileStone()
-	MileStone finishMileStone(Task)
-	MileStone unfinishMileStone(Task)
-	void setMileStoneDueDate(MileStone,Date)
+	+ int id
+	+ MailAddress mail_address
+	+ ProjectList project_list
+	+ Name name
+	+ Icon icon
+	+ Project createProject()
+	+ Project searchProject(Project)
+	+ MileStone getRecentMileStone()
+	+ MileStone finishMileStone(MileStone)
+	+ MileStone unfinishMileStone(MileStone)
+	+ void setMileStoneDueDate(MileStone,Date)
 }
 
 class Project{
-	int id
-	int adminUserId
-	URI iconURI
+	+ int id
+	+ int adminUserId
+	+ UserList user_list
+	+ MileStoneList milestone_list
+	+ finishedMap<Key:User Value:MileStoneList> finished_map
+	+ Icon icon
+	+ Name name
+	+ Date dueDate
 }
 
 class MileStone{
-	int id
-	date dueDate
+	+ int id
+	+ Date dueDate
 }
+
+Project "0..*" -- "1..*" User
+
+Project "1" o-- "0..*" MileStone
 
 @enduml
